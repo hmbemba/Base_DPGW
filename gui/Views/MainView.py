@@ -62,7 +62,7 @@ class MyView(BaseView):
 
     # First - Do all Initilization here
     def show(self):
-        self.auto_align(self.title.tag,0)
+        self.centerMiddle(self.title.tag)
         super().show()
 
     # Last - Do all destruction here
