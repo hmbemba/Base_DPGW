@@ -38,6 +38,7 @@ dpg.create_viewport(title="RevOH", width=int(screen_width*1), height=int(screen_
 dpg.setup_dearpygui()
 dpg.show_viewport()
 dpg.set_primary_window("Primary Window", True)
+#dpg.set_viewport_resize_callback(MyView.grid.redraw)
 dpg.start_dearpygui()
 dpg.destroy_context()
 

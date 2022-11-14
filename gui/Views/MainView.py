@@ -3,6 +3,10 @@ from dataclasses import dataclass
 from gui.DPGW.BaseView import BaseView
 from gui.DPGW.Container import Container
 import dearpygui.dearpygui as dpg
+from gui.DPGW.Row_v2 import Row
+from gui.DPGW.Button import Button
+
+
 
 
 @dataclass
@@ -10,6 +14,7 @@ class MyView(BaseView):
     def __post_init__(self):
         self.id = self.getId()
         with dpg.stage(tag=f"Stage_{self.id}"):
+            
             self.top = Container(
                 **{
                     "tag": f"top_{self.id}",
@@ -24,16 +29,40 @@ class MyView(BaseView):
                     "border": True,
                     "borderRadius": 0,
                     "borderColor": [255, 0, 0, 255],  # "orange",
-                    "bkgColor": [0, 0, 255, 255],
+                    "bkgColor": [0, 0, 255, 0],
                     "padding": [0, 0],  # [LR,TB] !Can also be negative
                     "onHover": None,
                     "noScrollBar": True,
                     "font": None,  # "main_20"
                 }
             ).create()
+            
+            self.title = Button(
+                    **{
+                        "tag": f"title_{self.id}",
+                        "w": 100,
+                        "h": 100,
+                        "text": "Title",
+                        "textColor": [255,255,255,255],#"white",
+                        "font": "mainFont_50",
+                        "callback": None, #self.autoFind,
+                        "user_data": ...,
+                        "border": False,
+                        "borderRadius": 0,
+                        "borderColor": [0,0,0,0], #'red',
+                        "bkgColor": [0, 0, 0, 0],
+                        "bkgColorHovered": [0, 0, 0, 0],#[37 * 0.7, 37 * 0.7, 38 * 0.7, 255],
+                        'bkgColorClicked': [0, 0, 0, 0],#'green',
+                        "padding": [0,0] ,#[10, 10],
+
+                    }
+                
+            ).create(Parent=self.top.link())
+        
 
     # First - Do all Initilization here
     def show(self):
+        self.auto_align(self.title.tag,0)
         super().show()
 
     # Last - Do all destruction here
