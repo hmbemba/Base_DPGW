@@ -31,3 +31,11 @@ class MyView(BaseView):
                     "font": None,  # "main_20"
                 }
             ).create()
+
+    # First - Do all Initilization here
+    def show(self):
+        super().show()
+
+    # Last - Do all destruction here
+    def hide(self):
+        super().hide()
